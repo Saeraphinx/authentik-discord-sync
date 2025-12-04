@@ -1,0 +1,18 @@
+{
+  "type": "module",
+  "name": "authentik-discord-sync",
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/index.js",
+    "dev:start": "node --env-file-if-exists=.env build/index.js",
+    "dev": "yarn build && yarn dev:start"
+  },
+  "dependencies": {
+    "@goauthentik/api": "^2025.6.3-1751754396",
+    "discord.js": "^14.25.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3"
+  }
+}
