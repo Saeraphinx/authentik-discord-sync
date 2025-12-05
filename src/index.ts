@@ -17,11 +17,16 @@ async function main() {
         data: new SlashCommandBuilder()
             .setName("sync-all")
             .setDescription("Manually trigger a sync between Authentik and Discord.")
-            .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator),
+            .setDefaultMemberPermissions(PermissionsBitField.Flags.ManageRoles),
         async execute(interaction) {
             await interaction.reply({ content: "Starting a manual sync...", flags: [MessageFlags.Ephemeral] });
-            await syncAllUsers(authentik, bot);
-            await interaction.editReply({ content: "Manual sync complete!" });
+            await syncAllUsers(authentik, bot).then(() => {
+                interaction.editReply({ content: "Manual sync complete!" })
+            }).catch(async (error) => {
+                console.error("Error during manual sync:", error);
+                await interaction.editReply({ content: `Manual sync failed: ${error.message}` });
+            });
+            //await interaction.editReply({ content: "Manual sync complete!" });
         }
     });
 
@@ -31,9 +36,13 @@ async function main() {
             .setDescription(`Sync your authentik account with your Discord roles.`)
             .setContexts(InteractionContextType.Guild),
         async execute(interaction) {
-            await interaction.reply({ content: "Starting your personal sync...", flags: [MessageFlags.Ephemeral] });
-            await syncUserByDiscordId(authentik, bot, interaction.user.id);
-            await interaction.editReply({ content: "Your personal sync is complete!" });
+            await interaction.reply({ content: "Starting your account sync...", flags: [MessageFlags.Ephemeral] });
+            await syncUserByDiscordId(authentik, bot, interaction.user.id).then(() => {
+                interaction.editReply({ content: "Your account sync is complete!" });
+            }).catch(async (error) => {
+                console.error("Error during personal sync:", error)
+                await interaction.editReply({ content: `Your account sync failed: ${error.message}` })
+            });
         }
     });
 

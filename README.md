@@ -19,7 +19,7 @@ services:
     environment:
       - DISCORD_BOT_TOKEN: your-discord-bot-token
       - DISCORD_GUILD_ID: your-discord-guild-id
-      - AUTHENTIK_URL: authentik.company/api/v3
+      - AUTHENTIK_URL: https://authentik.company/api/v3
       - AUTHENTIK_API_KEY: your-authentik-api-key
       - AUTHENTIK_USER_PATH: goauthentik.io/sources/discord-oa
 ```
@@ -31,7 +31,7 @@ services:
 ```sh
 DISCORD_BOT_TOKEN=your-discord-bot-token
 DISCORD_GUILD_ID=your-discord-guild-id
-AUTHENTIK_URL=authentik.company/api/v3
+AUTHENTIK_URL=https://authentik.company/api/v3
 AUTHENTIK_API_KEY=your-authentik-api-key
 AUTHENTIK_USER_PATH=goauthentik.io/sources/discord-oa
 ```
@@ -42,6 +42,6 @@ AUTHENTIK_USER_PATH=goauthentik.io/sources/discord-oa
 | ---------------------------- | --------------------------------------------------------------------- | ----------------------------------- |
 | **`DISCORD_BOT_TOKEN`**      | Token of your Discord Bot                                             |                                     |
 | **`DISCORD_GUILD_ID`**       | ID of the Discord Server that you want to sync roles with             |                                     |
-| **`AUTHENTIK_URL`**          | URL of your Authentik instance. e.g. (authentik.company/api/v3)       |                                     |
+| **`AUTHENTIK_URL`**          | URL of your Authentik instance                                        |                                     |
 | **`AUTHENTIK_API_KEY`**      | API key of a service account with the ability to edits users & groups |                                     |
-| AUTHENTIK_USER_PATH          | Path of users that you want to automatically sync are located under   | `goauthentik.io/sources/discord-oa` |
+| `AUTHENTIK_USER_PATH`        | Path of users that you want to automatically sync are located under   | `goauthentik.io/sources/discord-oa` |
