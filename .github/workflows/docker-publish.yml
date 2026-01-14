@@ -27,6 +27,7 @@ jobs:
     permissions:
       contents: read
       packages: write
+      id-token: write # required to sign package
 
     steps:
       - name: Checkout repository
